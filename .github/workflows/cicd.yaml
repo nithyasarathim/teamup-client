@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout source
+      - name: Checkout code
         uses: actions/checkout@v3
 
       - name: Setup Node.js
@@ -24,10 +24,10 @@ jobs:
       - name: Build React app
         run: npm run build
 
-      - name: Deploy to Azure App Service
+      - name: Deploy to Azure
         uses: azure/webapps-deploy@v2
         with:
-          app-name: teamup-client          
+          app-name: teamup-client
           publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
-          package: ./dist                   
+          package: ./dist
           slot-name: production
